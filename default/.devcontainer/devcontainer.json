@@ -1,11 +1,11 @@
 {
-  "name": "gotranx",
+  "name": "default",
   "image": "mcr.microsoft.com/devcontainers/base:jammy",
   "workspaceFolder": "/home/shared",
   "workspaceMount": "source=${localWorkspaceFolder},target=/home/shared,type=bind",
 
   "runArgs": [
-    "--name", "gotranx"
+    "--name", "claude-default"
   ],
 
   // Install Zsh as the default shell inside the container

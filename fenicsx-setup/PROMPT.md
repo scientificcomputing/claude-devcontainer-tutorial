@@ -1,48 +1,13 @@
 # Prompts for extending `biodiff` with Claude Code
 
-Each prompt below is meant to be pasted into Claude Code from the repository root.
+Each prompt below is meant to be pasted into Claude Code inside the `fenicsx-setup` dev container.
 They're grouped by difficulty, and each one adds a feature that researchers working
 on biomedical applications often need. Every prompt asks for tests, so the test suite
 grows along with the package.
 
-Before starting the first time you might want to run
-```
-/init
-```
-so that `claude` can create `CLAUDE.md`.
-
-Use
-```
-/clear
-```
-to start a new session
-
-Use
-```
-/btw
-```
-To ask questions about the session without interrupting.
-
-Use
-```
-/plugins
-```
-to manage plugins. Sometimes I have found that I need to do
-```
-/reload-plugins
-```
-in order for the plugins to take effect.
-
-Use
-```
-/context
-```
-To check the amount of tokens used for this context. If you have used a lot of toxens and want to continue the session you should do
-```
-/compact
-```
-
-T
+See the [README in the repository root](../README.md) for how to open this project
+in a dev container and for a list of useful Claude Code commands (`/init`,
+`/clear`, `/compact`, ...).
 
 ## Tips for writing good prompts
 

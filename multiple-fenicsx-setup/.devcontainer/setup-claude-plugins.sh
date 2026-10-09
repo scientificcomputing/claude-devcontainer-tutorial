@@ -38,10 +38,6 @@ fi
 # `|| true`: marketplace/plugin already present is reported as an error by
 # the CLI, and that's a success state for an idempotent setup script.
 "$CLAUDE_BIN" plugin marketplace add obra/superpowers >/dev/null 2>&1 || true
-"$CLAUDE_BIN" plugin marketplace add mattpocock/skills >/dev/null 2>&1 || true
-"$CLAUDE_BIN" plugin marketplace add  blader/humanizer >/dev/null 2>&1 || true
 "$CLAUDE_BIN" plugin install superpowers@superpowers-dev >/dev/null 2>&1 || true
-"$CLAUDE_BIN" plugin install mattpocock-skills@mattpocock >/dev/null 2>&1 || true
-"$CLAUDE_BIN" plugin install blader/humanizer@blader >/dev/null 2>&1 || true
 
 echo "setup-claude-plugins: ensured superpowers and mattpocock-skills plugins are installed."

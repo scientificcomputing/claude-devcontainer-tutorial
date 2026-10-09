@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+
+# Tooling
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# FEniCSx JIT cache and simulation output
+.cache/
+*.xdmf
+*.h5
+*.bp/
+*.vtu
+*.pvd
+*.msh
+results/
+
+# Spack
+.spack-env/
+spack.lock
+
+# Claude Code (local, per-user settings)
+.claude/settings.local.json
+
+# Editors / OS
+.vscode/*
+!.vscode/settings.json
+.DS_Store
