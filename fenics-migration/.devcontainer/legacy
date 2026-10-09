@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# Run a command in the legacy FEniCS container, in the current directory.
+# Both containers mount the workspace at /home/shared, so paths are the same.
+#
+#   legacy python3 legacy/poisson.py
+#   legacy mpirun -n 2 python3 legacy/poisson.py
+#   legacy            # interactive shell
+set -euo pipefail
+
+container=fenics-migration-legacy
+
+case "$PWD" in
+  /home/shared | /home/shared/*) ;;
+  *) echo "legacy: run this from inside /home/shared" >&2; exit 1 ;;
+esac
+
+[ $# -eq 0 ] && set -- bash
+tty_flag=()
+[ -t 0 ] && [ -t 1 ] && tty_flag=(-t)
+exec docker exec -i "${tty_flag[@]}" -w "$PWD" "$container" "$@"

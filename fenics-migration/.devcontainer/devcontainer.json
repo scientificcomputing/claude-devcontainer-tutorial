@@ -1,0 +1,38 @@
+{
+  "name": "fenics-migration",
+  "dockerComposeFile": "compose.yaml",
+  "service": "fenicsx",
+  "runServices": ["fenicsx", "legacy"],
+  "workspaceFolder": "/home/shared",
+  "shutdownAction": "stopCompose",
+
+  "features": {
+    // Install Zsh as the default shell inside the container
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": true,
+      "configureZshAsDefaultShell": true
+    },
+    // Docker CLI talking to the host's Docker, used by the `legacy` command
+    // to run code in the legacy FEniCS container
+    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
+      "moby": false
+    }
+  },
+
+  "postCreateCommand": ".devcontainer/setup.sh",
+  "postAttachCommand": "bash .devcontainer/setup-claude-plugins.sh",
+
+  // Recommended VS Code extensions to run inside the container
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "tamasfe.even-better-toml",
+        "anthropic.claude-code"
+      ]
+    }
+  },
+
+  "remoteUser": "root"
+}

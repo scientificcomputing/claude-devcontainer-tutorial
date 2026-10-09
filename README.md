@@ -13,6 +13,7 @@ run tests and break things without touching your host system.
 | [default](default/) | The smallest useful setup: an Ubuntu base image with zsh, Starship and the Claude Code extension. There is no project code. Use it as a template. |
 | [fenicsx-setup](fenicsx-setup/) | The main example. A small FEniCSx package (`biodiff`) for reaction–diffusion in biological tissue, built on the official DOLFINx image. It has tests, ruff/mypy pre-commit hooks and a list of prompts for extending it with Claude ([PROMPT.md](fenicsx-setup/PROMPT.md)). |
 | [multiple-fenicsx-setup](multiple-fenicsx-setup/) | Several dev container configs for one project (`stable` and `nightly` DOLFINx), so you can check that code works with both versions. Contains only placeholder code. |
+| [fenics-migration](fenics-migration/) | Two containers running together with Docker Compose: DOLFINx and legacy FEniCS. Claude works in the DOLFINx container and runs legacy code in the other one with `legacy python3 ...`, so it can translate old FEniCS code and check that both versions give the same result. |
 | [spack-env](spack-env/) | A container built from a custom `Dockerfile` instead of a prebuilt image. It installs [Spack](https://spack.io) and registers a local package repository, ready for writing Spack packages. |
 
 ## Prerequisites

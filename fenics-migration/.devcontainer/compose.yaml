@@ -1,0 +1,25 @@
+# Two containers sharing the same workspace (mounted at /home/shared in both):
+#   fenicsx - DOLFINx (stable). VS Code and Claude Code run here.
+#   legacy  - legacy FEniCS (dolfin 2019). Reach it from the fenicsx container with
+#             the `legacy` command, e.g. `legacy python3 legacy/poisson.py`.
+services:
+  fenicsx:
+    image: ghcr.io/fenics/dolfinx/dolfinx:stable
+    container_name: fenics-migration-fenicsx
+    command: sleep infinity
+    working_dir: /home/shared
+    volumes:
+      - ..:/home/shared:cached
+      - ${HOME}/.zshrc:/root/.zshrc:ro
+      - ${HOME}/.oh-my-zsh:/root/.oh-my-zsh:ro
+      - ${HOME}/.ssh:/root/.ssh:ro
+
+  legacy:
+    image: ghcr.io/scientificcomputing/fenics-gmsh:2024-05-13
+    # The image is only built for amd64; on Apple Silicon it runs under emulation.
+    platform: linux/amd64
+    container_name: fenics-migration-legacy
+    command: sleep infinity
+    working_dir: /home/shared
+    volumes:
+      - ..:/home/shared:cached
