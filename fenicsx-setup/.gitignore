@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+
+# Tooling
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# FEniCSx JIT cache and simulation output
+.cache/
+*.xdmf
+*.h5
+*.bp/
+*.vtu
+*.pvd
+*.msh
+results/
+
+# Editors / OS
+.vscode/*
+!.vscode/settings.json
+.DS_Store

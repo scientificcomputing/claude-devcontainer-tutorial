@@ -1,0 +1,33 @@
+{
+  "name": "Spack Dev Environment",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": "."
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": true,
+      "configureZshAsDefaultShell": true
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/bin/python3"
+      },
+      "extensions": [
+        "ms-python.python",
+        "tamasfe.even-better-toml",
+        "anthropic.claude-code"
+      ]
+    }
+  },
+  "mounts": [
+    "source=${localEnv:HOME}/.zshrc,target=/home/vscode/.zshrc,type=bind,readonly",
+    "source=${localEnv:HOME}/.oh-my-zsh,target=/home/vscode/.oh-my-zsh,type=bind,readonly",
+    "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,readonly"
+  ],
+  "remoteUser": "vscode",
+  "postCreateCommand": "spack compiler find && spack repo add spack_repo/scientificcomputing",
+  "postAttachCommand": "bash .devcontainer/setup-claude-plugins.sh && bash .devcontainer/setup.sh && zsh"
+}

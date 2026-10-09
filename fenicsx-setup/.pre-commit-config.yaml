@@ -1,0 +1,51 @@
+# pre-commit.ci (the hosted app, if it's still installed) can't run
+# `language: system` hooks, so it would fail on mypy -- our own CI instead
+# runs the real `pre-commit` (see .github/workflows/pre-commit.yml) inside
+# the dolfinx container, where `language: system` works fine. `skip` only
+# affects which hooks the hosted app *runs*; autoupdate still bumps `rev:`
+# for every repo below, mypy included.
+ci:
+  autoupdate_schedule: weekly
+  skip: [mypy]
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-added-large-files
+        args: ['--maxkb=3000']
+      - id: check-docstring-first
+      - id: debug-statements
+      - id: check-toml
+
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    # Ruff version.
+    rev: 'v0.16.10'
+    hooks:
+       # Run the linter.
+      - id: ruff
+        args: [ --fix ]
+      # Run the formatter.
+      - id: ruff-format
+
+
+  - repo: https://github.com/asottile/add-trailing-comma
+    rev: v4.0.0
+    hooks:
+      - id: add-trailing-comma
+
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v2.4.0
+    hooks:
+      - id: mypy
+        # The default hook spins up an isolated venv that can't see dolfinx
+        # (not pip-installable outside the container image) or this repo's
+        # other deps, so run the mypy already on PATH in this environment
+        # instead -- the one `python3 -m mypy .` uses, with pyproject.toml's
+        # [tool.mypy] config picked up as normal.
+        language: system
+        args: ["--scripts-are-modules"]

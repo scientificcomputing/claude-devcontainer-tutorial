@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "biodiff"
+version = "0.1.0"
+description = "A tiny FEniCSx toolkit for reaction-diffusion of tracers and drugs in biological tissue"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ email = "henriknf@simula.no" }]
+keywords = ["fenicsx", "dolfinx", "finite-element", "diffusion", "biomedical"]
+# DOLFINx (fenics-dolfinx) is expected to be installed in the environment,
+# e.g. via the ghcr.io/fenics/dolfinx/dolfinx Docker image or conda.
+dependencies = ["fenics-dolfinx", "numpy"]
+
+[project.optional-dependencies]
+test = ["pytest"]
+dev = ["biodiff[test]", "ruff", "pre-commit", "mypy"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
