@@ -1,6 +1,6 @@
 {
   "name": "default",
-  "image": "mcr.microsoft.com/devcontainers/base:jammy",
+  "image": "mcr.microsoft.com/devcontainers/python:3.14-trixie",
   "workspaceFolder": "/home/shared",
   "workspaceMount": "source=${localWorkspaceFolder},target=/home/shared,type=bind",
 
@@ -28,7 +28,11 @@
         "ms-python.vscode-pylance",
         "tamasfe.even-better-toml",
         "anthropic.claude-code"
-      ]
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "python.testing.pytestEnabled": true
+      }
     }
   },
 
