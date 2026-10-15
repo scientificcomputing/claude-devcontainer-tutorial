@@ -12,6 +12,7 @@ fi
 # python3 -m pip install scifem --no-build-isolation --no-binary=scifem
 
 python3 -m pip install -e .[dev]
-pre-commit install --install-hooks
+# pre-commit install --install-hooks
+
 # 3. Print success message
 echo "Container setup complete!"
